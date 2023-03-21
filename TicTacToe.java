@@ -4,11 +4,67 @@ public class TicTacToe
 {
     
     
-    public void displayGrid(String[] playedMoves)
+    public boolean displayGrid(String[] playedMoves)
     {
         String[] gridFramework = {"      _1_ _2_ _3_","A -> |_" + playedMoves[0] + "_|_" + playedMoves[1] + "_|_" + playedMoves[2] + "_|","B -> |_" + playedMoves[3] + "_|_" + playedMoves[4] + "_|_" + playedMoves[5] + "_|","C -> |_" + playedMoves[6] + "_|_" + playedMoves[7] + "_|_" + playedMoves[8] + "_|"};
         String contructedGrid = gridFramework[0] + "\n" + gridFramework[1] + "\n" + gridFramework[2] + "\n" + gridFramework[3];
         System.out.println(contructedGrid);
+        
+
+        if (playedMoves[0] == playedMoves[1] && playedMoves[0] == playedMoves[2] && playedMoves[1] == playedMoves[2] && !(playedMoves[0].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[3] == playedMoves[4] && playedMoves[3] == playedMoves[5] && playedMoves[4] == playedMoves[5] && !(playedMoves[3].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[6] == playedMoves[7] && playedMoves[6] == playedMoves[8] && playedMoves[7] == playedMoves[8] && !(playedMoves[6].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[0] == playedMoves[3] && playedMoves[0] == playedMoves[6] && playedMoves[3] == playedMoves[6] && !(playedMoves[0].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[1] == playedMoves[4] && playedMoves[1] == playedMoves[7] && playedMoves[4] == playedMoves[7] && !(playedMoves[1].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[2] == playedMoves[5] && playedMoves[2] == playedMoves[8] && playedMoves[5] == playedMoves[8] && !(playedMoves[2].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[0] == playedMoves[4] && playedMoves[0] == playedMoves[8] && playedMoves[4] == playedMoves[8] && !(playedMoves[0].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else if (playedMoves[2] == playedMoves[4] && playedMoves[2] == playedMoves[6] && playedMoves[4] == playedMoves[6] && !(playedMoves[2].equals("_")))
+        {
+            System.out.println("We have a winner!");
+            return true;
+        }
+        else
+        {
+            
+            for (int i = 0;i < playedMoves.length; i++ )
+                {
+                    if (playedMoves[i].equals("_"))
+                        {
+                            return false;
+                        }
+                }
+            System.out.println("GAME OVER!!!");
+            System.out.println("____________Resulted in a DRAW____________");
+            return true;
+        }
     }
     
     public boolean flipCoin()
@@ -201,7 +257,7 @@ public class TicTacToe
         System.out.println("\nInstructions: " + "\nWhen prompted, enter the letter of the row followed by the number of the column: B2");
         System.out.println("GAME TIME!!!");
         
-        ticTacToe.displayGrid(playedMoves);
+        winner = ticTacToe.displayGrid(playedMoves);
         
         userTurn = ticTacToe.flipCoin();
                 
@@ -215,7 +271,7 @@ public class TicTacToe
                             playedMoves = ticTacToe.computerPlay(playedMoves, "O");
                         }
                 userTurn = !userTurn;
-                ticTacToe.displayGrid(playedMoves);
+                winner = ticTacToe.displayGrid(playedMoves);
             }
                               
                               
